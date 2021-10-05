@@ -1,0 +1,36 @@
+<div class="card">
+    <p-table [value]="listadoMocks" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+        currentPageReportTemplate="Mostrando {first} hasta {last} de {totalRecords} registros" [rowsPerPageOptions]="[10,20,30]">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Servicio</th>
+                <th>Host</th>
+                <th>Ap. Cliente</th>
+                <th>Tipo WS</th>
+                <th>Ruta Mock</th>
+                <th>Opciones</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-mock>
+            <tr>
+                <td>{{mock.servicio}}</td>
+                <td>{{mock.aplicativo_host}}</td>
+                <td>{{mock.aplicativo_cliente}}</td>
+                <td>{{mock.tipo}}</td>
+                <td>{{mock.ruta_servicio}}</td>
+                <td><p-button (click)="showDialog()" icon="pi pi-pencil" label="Response"></p-button></td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-dialog header="Response" [(visible)]="display" [modal]="true" [style]="{width: '50vw'}">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="display=false" label="Guardar" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>
+
