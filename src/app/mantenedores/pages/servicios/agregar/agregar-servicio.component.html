@@ -1,0 +1,68 @@
+<div class="mt-5">
+    <p-divider align="left" type="dashed">
+        <i class="pi pi-user mr-2"></i>
+        <b>Agregar Servicio Mock</b>
+    </p-divider>
+</div>
+
+<div class="grid mt-5 mx-2">
+    <div class="col-12 md:col-6">
+        <p-card>
+            <div class="formgrid grid">
+                <div class="field col-12 md:col-6">
+                    <label for="servicio">Servicio:</label>
+                    <input pInputText [(ngModel)]="nuevoMock.servicio" id="servicio" type="text"
+                        class="inputfield w-full">
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="aplicativo_host">Host:</label>
+                    <input pInputText [(ngModel)]="nuevoMock.aplicativo_host" id="aplicativo_host" type="text"
+                        class="inputfield w-full">
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="aplicativo_cliente">Aplicación Cliente:</label>
+                    <input pInputText [(ngModel)]="nuevoMock.aplicativo_cliente" id="aplicativo_cliente" type="text"
+                        class="inputfield w-full">
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="ruta_servicio">Ruta Mock:</label>
+                    <input pInputText [(ngModel)]="nuevoMock.ruta_servicio" id="ruta_servicio" type="text"
+                        class="inputfield w-full">
+                </div>
+
+                <div class="field col-12 md:col-6">
+                    <label for="cliente">Cliente:</label>
+                    <div>
+                        <p-dropdown [(ngModel)]="nuevoMock.cliente" [options]="clientes" optionValue="code"
+                            optionLabel="name"></p-dropdown>
+                    </div>
+                </div>
+
+                <div class="field col-12 md:col-6">
+                    <label for="tipo">Tipo Response:</label>
+                    <div>
+                        <p-dropdown [(ngModel)]="nuevoMock.tipo" [options]="tipo" optionValue="code" optionLabel="name">
+                        </p-dropdown>
+                    </div>
+                </div>
+                <div class="field col-12">
+                    <label for="response">Response:</label>
+                    <textarea pInputTextarea [(ngModel)]="nuevoMock.response" id="response" type="text" [rows]="10"
+                        class="inputfield w-full"></textarea>
+                </div>
+                <div class="field col-12">
+                    <button pButton class="p-button-raised p-button-rounded mr-5" type="button" label="Guardar"
+                        (click)="guardar()"></button>
+                    <button pButton class="p-button-raised p-button-rounded p-button-danger" type="button"
+                        label="Cancelar" (click)="regresar()"></button>
+                </div>
+            </div>
+        </p-card>
+    </div>
+</div>
+
+<p-messages *ngIf="hayError" severity="error">
+    <ng-template pTemplate>
+        ¡Oh no! ocurrió un problema al conectarme al servidor... Una pena.
+    </ng-template>
+</p-messages>

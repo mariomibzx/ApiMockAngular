@@ -8,6 +8,13 @@ import { MessageModule } from 'primeng/message';
 import { DividerModule } from 'primeng/divider';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputTextModule } from 'primeng/inputtext';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { DropdownModule } from 'primeng/dropdown';
+import { CardModule } from 'primeng/card';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   exports: [
@@ -18,8 +25,14 @@ import { DialogModule } from 'primeng/dialog';
     MessageModule,
     DividerModule,
     ButtonModule,
-    DialogModule
-    
+    DialogModule,
+    DynamicDialogModule,
+    InputTextareaModule,
+    InputTextModule,
+    RadioButtonModule,
+    DropdownModule,
+    CardModule,
+    ToastModule
   ]
 })
 export class PrimeNgModule { }

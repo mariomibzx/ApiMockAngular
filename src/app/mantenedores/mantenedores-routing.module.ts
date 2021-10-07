@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { ParametrosComponent } from './pages/parametros/parametros.component';
-import { ServiciosComponent } from './pages/servicios/servicios.component';
+import { ListarParametrosComponent } from './pages/parametros/listar/listar-parametros.component';
+import { ListarServiciosComponent } from './pages/servicios/listar/listar-servicios.component';
+import { AgregarParametroComponent } from './pages/parametros/agregar/agregar-parametro.component';
+import { AgregarServicioComponent } from './pages/servicios/agregar/agregar-servicio.component';
 
 const routes: Routes = [
   {
@@ -10,12 +12,20 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       {
-        path: 'parametros',
-        component: ParametrosComponent
+        path: 'listadoParametros',
+        component: ListarParametrosComponent
       },
       {
-        path: 'servicios',
-        component: ServiciosComponent
+        path: 'agregarParametros',
+        component: AgregarParametroComponent
+      },
+      {
+        path: 'listadoServicios',
+        component: ListarServiciosComponent
+      },
+      {
+        path: 'agregarServicios',
+        component: AgregarServicioComponent
       }
     ]
   }

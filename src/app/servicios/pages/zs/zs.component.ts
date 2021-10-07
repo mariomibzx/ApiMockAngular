@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Mock } from '../../interfaces/mock.interface';
-import { MockService } from '../../services/mock.service';
+import { MockService } from '../../../services/mock.service';
 
 @Component({
   selector: 'app-zs',
@@ -17,13 +17,13 @@ export class ZsComponent implements OnInit {
   constructor(private mocksServices: MockService) { }
 
   ngOnInit(): void {
-    this.mocksServices.getMockPorCliente('ZS')
+    this.mocksServices.getInfoMockPorCliente('ZS')
       .subscribe(mocks => {
         this.listadoMocks = mocks;
-      }, (error => {
+      }, error => {
         console.log('Ha ocurrido un error.');
         this.hayError = true;
-      }))
+      })
   }
 
 }

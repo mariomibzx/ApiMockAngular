@@ -18,17 +18,27 @@
                 <td>{{mock.aplicativo_cliente}}</td>
                 <td>{{mock.tipo}}</td>
                 <td>{{mock.ruta_servicio}}</td>
-                <td><p-button (click)="showDialog()" icon="pi pi-pencil" label="Response"></p-button></td>
+                <td><p-button (click)="showDialog(mock)" icon="pi pi-pencil" label="Response"></p-button></td>
             </tr>
         </ng-template>
     </p-table>
 </div>
 
-<p-dialog header="Response" [(visible)]="display" [modal]="true" [style]="{width: '50vw'}">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p-dialog header="Editar Response" [(visible)]="display" [modal]="true" [style]="{width: '50vw'}">
+    <div *ngIf="mockSeleccionado">
+        Ingrese el response para el servicio: {{ mockSeleccionado.servicio }}
+    </div>
+
+    <div class="mt-5">
+        <div *ngIf="mockResponse else mensajeDefault">
+            <textarea [rows]="5" [cols]="30" [disabled] pInputTextarea>{{ mockResponse.response }}</textarea>
+        </div>
+        
+        <ng-template #mensajeDefault>
+            <textarea pInputTextarea>Ingrese el response AQUI</textarea>
+        </ng-template>
+    </div>
+    
     <ng-template pTemplate="footer">
         <p-button icon="pi pi-check" (click)="display=false" label="Guardar" styleClass="p-button-text"></p-button>
     </ng-template>

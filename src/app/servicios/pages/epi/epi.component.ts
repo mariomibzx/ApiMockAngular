@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Mock } from '../../interfaces/mock.interface';
-import { MockService } from '../../services/mock.service';
+import { MockService } from '../../../services/mock.service';
 
 @Component({
   selector: 'app-epi',
@@ -16,7 +16,7 @@ export class EpiComponent implements OnInit {
   constructor( private mocksServices: MockService ) { }
 
   ngOnInit(): void {
-    this.mocksServices.getMockPorCliente('EPI')
+    this.mocksServices.getInfoMockPorCliente('EPI')
       .subscribe(mocks => {
         this.listadoMocks = mocks;
       }, (error => {

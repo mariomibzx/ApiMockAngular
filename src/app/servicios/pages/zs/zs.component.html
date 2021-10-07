@@ -11,14 +11,8 @@
         <p-progressSpinner></p-progressSpinner>
     </div>
     
-    <div *ngIf="listadoMocks.length > 0 && !hayError">
+    <div *ngIf="listadoMocks.length > 0">
         <app-servicios-tabla [listadoMocks]="listadoMocks"></app-servicios-tabla>
     </div>
-
-    <p-messages *ngIf="listadoMocks.length === 0 && hayError" severity="error">
-        <ng-template pTemplate>
-            ¡Oh no! ocurrió un problema al conectarme al servidor... Una pena.
-        </ng-template>
-    </p-messages>
 
 </div>

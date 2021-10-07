@@ -9,6 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
 import { ServiciosModule } from './servicios/servicios.module';
 import { MantenedoresModule } from './mantenedores/mantenedores.module';
+import { PrimeNgModule } from './prime-ng/prime-ng.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MantenedoresModule } from './mantenedores/mantenedores.module';
     SharedModule,
     HomeModule,
     ServiciosModule,
-    MantenedoresModule
+    MantenedoresModule,
+    PrimeNgModule
   ],
   providers: [],
   bootstrap: [AppComponent]
