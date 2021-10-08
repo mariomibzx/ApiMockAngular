@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Parametro } from '../../../interfaces/parametro.interface';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { CrudParametrosService } from 'src/app/services/crud-parametros.service';
 
 @Component({
@@ -18,7 +18,8 @@ export class ListarParametrosComponent implements OnInit {
   listadoParametrosVacio: boolean = false;
 
   constructor( private crudParametrosService: CrudParametrosService,
-    private messageService: MessageService  ) { }
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService  ) { }
 
   ngOnInit(): void {
     this.crudParametrosService.leerParametros()
@@ -43,5 +44,18 @@ export class ListarParametrosComponent implements OnInit {
   respuestaVacia(){
     this.listadoParametrosVacio = true;
   }
+
+  mensaje(severity: string, summary: string, detail: string){
+    this.messageService.add({severity, summary, detail});
+  }
+
+  confirm() {
+    this.confirmationService.confirm({
+        message: '¿Está seguro que desea borrar el parámetro?',
+        accept: () => {
+          this.mensaje('success','Eliminación de Parámetro','Se ha borrado correctamente el parámetro.');
+        }
+    });
+}
 
 }

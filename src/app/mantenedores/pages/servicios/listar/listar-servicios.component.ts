@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { Mock } from 'src/app/servicios/interfaces/mock.interface';
 import { CrudServiciosMockService } from '../../../../services/crud-servicios-mock.service';
 
@@ -18,7 +18,8 @@ export class ListarServiciosComponent implements OnInit {
   listadoMocksVacio: boolean = false;
 
   constructor( private crudServiciosMockService: CrudServiciosMockService,
-    private messageService: MessageService ) { }
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService ) { }
 
   ngOnInit(): void {
     this.crudServiciosMockService.leerMocks()
@@ -42,6 +43,19 @@ export class ListarServiciosComponent implements OnInit {
 
   respuestaVacia(){
     this.listadoMocksVacio = true;
+  }
+
+  mensaje(severity: string, summary: string, detail: string){
+    this.messageService.add({severity, summary, detail});
+  }
+
+  confirm() {
+    this.confirmationService.confirm({
+        message: '¿Está seguro que desea borrar el mock?',
+        accept: () => {
+          this.mensaje('success','Eliminación de Mock','Se ha borrado correctamente el mock.');
+        }
+    });
   }
 
 }

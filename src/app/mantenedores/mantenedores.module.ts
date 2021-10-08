@@ -9,6 +9,7 @@ import { ListarParametrosComponent } from './pages/parametros/listar/listar-para
 import { ListarServiciosComponent } from './pages/servicios/listar/listar-servicios.component';
 import { AgregarParametroComponent } from './pages/parametros/agregar/agregar-parametro.component';
 import { AgregarServicioComponent } from './pages/servicios/agregar/agregar-servicio.component';
+import { ConfirmationService } from 'primeng/api';
 
 
 
@@ -27,6 +28,9 @@ import { AgregarServicioComponent } from './pages/servicios/agregar/agregar-serv
     MantenedoresRoutingModule,
     PrimeNgModule,
     FormsModule
+  ],
+  providers: [
+    ConfirmationService
   ]
 })
 export class MantenedoresModule { }

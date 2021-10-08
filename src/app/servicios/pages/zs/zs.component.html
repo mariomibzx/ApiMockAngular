@@ -5,14 +5,18 @@
     </p-divider>
 </div>
 
-<div class="mt-5 mx-3">
+<div *ngIf="listadoMocks.length === 0 && !hayError && !listadoMocksVacio">
+    <p-progressSpinner></p-progressSpinner>
+</div>
 
-    <div *ngIf="listadoMocks.length === 0 && !hayError">
-        <p-progressSpinner></p-progressSpinner>
-    </div>
-    
-    <div *ngIf="listadoMocks.length > 0">
-        <app-servicios-tabla [listadoMocks]="listadoMocks"></app-servicios-tabla>
-    </div>
+<div *ngIf="listadoMocks.length > 0">
+    <app-servicios-tabla [listadoMocks]="listadoMocks"></app-servicios-tabla>
+</div>
 
+<div>
+    <p-messages *ngIf="listadoMocksVacio" severity="error">
+        <ng-template pTemplate>
+            No existen registros.
+        </ng-template>
+    </p-messages>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Mock } from '../../interfaces/mock.interface';
 import { MockService } from '../../../services/mock.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-zs',
@@ -10,20 +11,35 @@ import { MockService } from '../../../services/mock.service';
 })
 export class ZsComponent implements OnInit {
 
-  listadoMocks: Mock[] = [];
   hayError: boolean = false;
+  
+  listadoMocks: Mock[] = [];
 
+  listadoMocksVacio: boolean = false;
 
-  constructor(private mocksServices: MockService) { }
+  constructor(private mocksServices: MockService,
+    private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.mocksServices.getInfoMockPorCliente('ZS')
       .subscribe(mocks => {
         this.listadoMocks = mocks;
+        if (this.listadoMocks.length === 0) {
+          this.respuestaVacia();
+        }
       }, error => {
-        console.log('Ha ocurrido un error.');
         this.hayError = true;
+        this.errorServidor();
+        console.log(error);
       })
+  }
+
+  errorServidor(){
+    this.messageService.add({severity:'error', summary:'Error', detail:'Ha ocurrido un error en el servidor.'});
+  }
+
+  respuestaVacia(){
+    this.listadoMocksVacio = true;
   }
 
 }
