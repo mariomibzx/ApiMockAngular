@@ -57,16 +57,16 @@ export class MenuComponent implements OnInit {
             ]
           },
           {
-            label: 'Servicios',
+            label: 'Mocks',
             icon: 'pi pi-th-large',
             items: [
               {
-                label: 'Ver / editar Servicios',
+                label: 'Ver / editar Mocks',
                 icon: 'pi pi-pencil',
                 routerLink: 'mantenedores/listadoServicios'
               },
               {
-                label: 'Agregar Servicios',
+                label: 'Agregar Mocks',
                 icon: 'pi pi-plus',
                 routerLink: 'mantenedores/agregarServicios'
               }

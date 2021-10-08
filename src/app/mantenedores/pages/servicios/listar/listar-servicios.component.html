@@ -34,7 +34,8 @@
                         <td>{{mock.tipo}}</td>
                         <td>{{mock.ruta_servicio}}</td>
                         <td>
-                            <p-button icon="pi pi-pencil" label="Editar"></p-button>
+                            <p-button [routerLink]="['/mantenedores/editarServicios', mock.id]" class="mr-3" icon="pi pi-pencil" label="Editar"></p-button>
+                            <button pButton icon="pi pi-times" type="button" label="Borrar" class="p-button-danger"></button>
                         </td>
                     </tr>
                 </ng-template>

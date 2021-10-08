@@ -37,4 +37,9 @@ export class CrudParametrosService {
     return this.http.delete<any>(API_URL);
   }
 
+  //Leer Parametro por Id
+  leerParametrosPorId( id: string): Observable<Parametro> {
+    return this.http.get<Parametro>(`${this.baseUrlApimock}/parametros/${id}`);
+  }
+
 }

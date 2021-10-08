@@ -18,9 +18,10 @@
                 [rowsPerPageOptions]="[10,20,30]">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th>Parámetro</th>
+                        <th class="">Parámetro</th>
                         <th>Valor</th>
                         <th>Descripción</th>
+                        <th>Opciones</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-parametro>
@@ -28,6 +29,10 @@
                         <td>{{ parametro.codigo }}</td>
                         <td>{{ parametro.valor }}</td>
                         <td>{{ parametro.descripcion }}</td>
+                        <td>
+                            <p-button [routerLink]="['/mantenedores/editarParametros', parametro.id]" class="mr-3" icon="pi pi-pencil" label="Editar"></p-button>
+                            <button pButton icon="pi pi-times" type="button" label="Borrar" class="p-button-danger"></button>
+                        </td>
                     </tr>
                 </ng-template>
             </p-table>

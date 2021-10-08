@@ -20,8 +20,16 @@ const routes: Routes = [
         component: AgregarParametroComponent
       },
       {
+        path: 'editarParametros/:id',
+        component: AgregarParametroComponent
+      },
+      {
         path: 'listadoServicios',
         component: ListarServiciosComponent
+      },
+      {
+        path: 'editarServicios/:id',
+        component: AgregarServicioComponent
       },
       {
         path: 'agregarServicios',

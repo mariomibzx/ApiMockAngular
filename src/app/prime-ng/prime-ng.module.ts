@@ -15,6 +15,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { CardModule } from 'primeng/card';
 import { ToastModule } from 'primeng/toast';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
 
 @NgModule({
   exports: [
@@ -32,7 +33,8 @@ import { ToastModule } from 'primeng/toast';
     RadioButtonModule,
     DropdownModule,
     CardModule,
-    ToastModule
+    ToastModule,
+    BreadcrumbModule
   ]
 })
 export class PrimeNgModule { }

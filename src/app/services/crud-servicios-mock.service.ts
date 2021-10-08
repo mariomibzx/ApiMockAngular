@@ -36,4 +36,9 @@ export class CrudServiciosMockService {
     var API_URL = `${this.baseUrlApimock}/servicios/${id}`;
     return this.http.delete<any>(API_URL);
   }
+
+  //Leer Mock por Id
+  leerMocksPorId(id: string): Observable<Mock> {
+    return this.http.get<Mock>(`${this.baseUrlApimock}/servicios/${id}`);
+  }
 }

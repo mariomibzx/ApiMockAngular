@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { CrudParametrosService } from 'src/app/services/crud-parametros.service';
 import { Parametro } from '../../../interfaces/parametro.interface';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-agregar',
@@ -22,20 +23,36 @@ export class AgregarParametroComponent implements OnInit {
 
   constructor(private router: Router,
     private crudParametrosService: CrudParametrosService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private activatedRoute: ActivatedRoute,
     ) { }
 
   ngOnInit(): void {
+    this.activatedRoute.params
+      .pipe(
+        switchMap(({ id }) => this.crudParametrosService.leerParametrosPorId(id)))
+      .subscribe(parametro => this.nuevoParametro = parametro);
   }
 
   crearParametro(): void {
     console.log(this.nuevoParametro);
-    this.crudParametrosService.crearParametro(this.nuevoParametro)
+
+    if (this.nuevoParametro.id) {
+      this.crudParametrosService.actualizarParametro(this.nuevoParametro.id, this.nuevoParametro)
+        .subscribe(resp => {
+          this.mensaje('success','Actualización de Parámetro','Se ha actualizado correctamente el parámetro.');
+        }, (error => {
+          this.errorServidor();
+        }));
+    } else {
+      this.crudParametrosService.crearParametro(this.nuevoParametro)
       .subscribe(resp => {
-        this.messageService.add({severity:'success', summary:'Creación de Parámetro', detail:'Se ha creado correctamente un nuevo parámetro.'});
+        this.mensaje('success','Creación de Parámetro','Se ha creado correctamente un nuevo parámetro.');
       }, (error => {
         this.errorServidor();
       }));
+    }
+    
   }
 
   regresar() {
@@ -44,6 +61,10 @@ export class AgregarParametroComponent implements OnInit {
 
   errorServidor(){
     this.messageService.add({severity:'error', summary:'Error', detail:'Ha ocurrido un error en el servidor.'});
+  }
+
+  mensaje(severity: string, summary: string, detail: string){
+    this.messageService.add({severity, summary, detail});
   }
 
 
