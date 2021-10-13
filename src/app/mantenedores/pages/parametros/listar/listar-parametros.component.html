@@ -5,48 +5,52 @@
     </p-divider>
 </div>
 
-<div *ngIf="listadoParametros.length === 0 && !hayError && !listadoParametrosVacio">
-    <p-progressSpinner></p-progressSpinner>
-</div>
+<div class="mx-3">
 
-<div *ngIf="listadoParametros.length > 0">
-    <div class="card">
-        <p-table [value]="listadoParametros" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
-            responsiveLayout="scroll"
-            currentPageReportTemplate="Mostrando {first} hasta {last} de {totalRecords} registros"
-            [rowsPerPageOptions]="[10,20,30]">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th class="">Parámetro</th>
-                    <th>Valor</th>
-                    <th>Descripción</th>
-                    <th>Opciones</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-parametro>
-                <tr>
-                    <td>{{ parametro.codigo }}</td>
-                    <td>{{ parametro.valor }}</td>
-                    <td>{{ parametro.descripcion }}</td>
-                    <td>
-                        <button pButton class="mr-3" [routerLink]="['/mantenedores/editarParametros', parametro.id]"
-                            icon="pi pi-pencil" label="Editar"></button>
-                        <button pButton class="p-button-danger" (click)="confirm()" icon="pi pi-times"
-                            label="Borrar"></button>
-                    </td>
-                </tr>
-            </ng-template>
-        </p-table>
+    <div *ngIf="listadoParametros.length === 0 && !hayError && !listadoParametrosVacio">
+        <p-progressSpinner></p-progressSpinner>
     </div>
-</div>
+
+    <div *ngIf="listadoParametros.length > 0">
+        <div class="shadow-4">
+            <p-table [value]="listadoParametros" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+                responsiveLayout="scroll"
+                currentPageReportTemplate="Mostrando {first} hasta {last} de {totalRecords} registros"
+                [rowsPerPageOptions]="[10,20,30]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="">Parámetro</th>
+                        <th>Valor</th>
+                        <th>Descripción</th>
+                        <th>Opciones</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-parametro>
+                    <tr>
+                        <td>{{ parametro.codigo }}</td>
+                        <td>{{ parametro.valor }}</td>
+                        <td>{{ parametro.descripcion }}</td>
+                        <td>
+                            <button pButton class="mr-3" [routerLink]="['/mantenedores/editarParametros', parametro.id]"
+                                icon="pi pi-pencil" label="Editar"></button>
+                            <button pButton class="p-button-danger" (click)="borrar(parametro.id)" icon="pi pi-times"
+                                label="Borrar"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
 
 
-<div>
-    <p-messages *ngIf="listadoParametrosVacio" severity="error">
-        <ng-template pTemplate>
-            No existen registros.
-        </ng-template>
-    </p-messages>
+    <div>
+        <p-messages *ngIf="listadoParametrosVacio" severity="error">
+            <ng-template pTemplate>
+                No existen registros.
+            </ng-template>
+        </p-messages>
+    </div>
+
 </div>
 
 <p-confirmDialog acceptLabel="Aceptar" rejectLabel="Cancelar" acceptButtonStyleClass="p-button-danger"
